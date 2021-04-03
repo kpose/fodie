@@ -31,8 +31,8 @@ const RecipeDetails = ({navigation, route}: HomeRecipeProps) => {
     image,
     description,
     ingredients,
+    instructions,
   } = route.params;
-  console.log(ingredients);
   const regex = /(<([^>]+)>)/gi;
   const summary = description.replace(regex, '');
   //const baseUrl = 'https://spoonacular.com/cdn/ingredients_100x100/'
@@ -50,6 +50,7 @@ const RecipeDetails = ({navigation, route}: HomeRecipeProps) => {
       </View>
     );
   };
+  console.log(instructions);
 
   return (
     <SafeAreaView style={styles.container}>

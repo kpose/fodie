@@ -11,6 +11,7 @@ export type HomeRecipeStackParams = {
     image: any;
     description: string;
     ingredients: [];
+    instructions: [];
   };
 };
 

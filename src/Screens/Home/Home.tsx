@@ -22,6 +22,7 @@ const Home = ({navigation}: HomeRecipeProps) => {
     state => state.getRecipes,
   );
   const recipes = useSelector(getRecipes);
+  console.log(recipes);
 
   const renderItem = ({item}: any) => {
     return (
@@ -38,6 +39,7 @@ const Home = ({navigation}: HomeRecipeProps) => {
             image: item.image,
             description: item.summary,
             ingredients: item.extendedIngredients,
+            instructions: item.analyzedInstructions,
           })
         }
       />

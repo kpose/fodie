@@ -1,11 +1,12 @@
 import axios from 'axios';
+import Config from 'react-native-config';
 import {
   FETCH_RECIPES_FAIL,
   FETCH_RECIPES_REQUEST,
   FETCH_RECIPES_SUCCESS,
 } from '../Constants/Constants';
 
-const SPOON_API_KEY = '68a315d40e15447ca99c06d3fbed35da';
+const SPOON_API_KEY = Config.SPOON_API_KEY;
 const recipesEndpoint = 'https://api.spoonacular.com/recipes/random?';
 
 export default listAllRecipes = limit => async dispatch => {
