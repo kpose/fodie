@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image, TouchableOpacity} from 'react-native';
+import {View, Text, Image, TouchableOpacity, SafeAreaView} from 'react-native';
 import styles from './styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -15,7 +15,7 @@ type CardProps = {
 
 const RecipeCard = (props: CardProps) => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <TouchableOpacity style={styles.cardContainer} onPress={props.onPress}>
         <Image
           style={styles.cardImage}
@@ -56,7 +56,7 @@ const RecipeCard = (props: CardProps) => {
           )}
         </View>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 };
 

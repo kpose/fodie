@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   },
   descriptionContainer: {},
   descriptionTitle: {
-    //marginLeft: wp(4),
+    marginLeft: wp(2),
     marginTop: hp(2),
     marginBottom: hp(1),
     color: COLORS.SECONDARY,
@@ -105,6 +105,15 @@ const styles = StyleSheet.create({
   },
   ingredientHead: {
     marginTop: hp(2),
+    marginLeft: wp(2),
+    marginBottom: hp(1),
+    color: COLORS.SECONDARY,
+    fontWeight: 'bold',
+    fontSize: Fonts.H3,
+  },
+  preparationTitle: {
+    marginTop: hp(2),
+    marginLeft: wp(2),
     marginBottom: hp(1),
     color: COLORS.SECONDARY,
     fontWeight: 'bold',

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -13,7 +13,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import HTML from 'react-native-render-html';
 import {HomeRecipeProps} from '../../Navigation/NavigationTypes';
-import {MoreInfo} from '../../Components';
+import {MoreInfo, RecipeInstruction} from '../../Components';
 
 /* utils */
 import {COLORS, Fonts} from '../../Utils';
@@ -35,6 +35,7 @@ const RecipeDetails = ({navigation, route}: HomeRecipeProps) => {
   } = route.params;
   const regex = /(<([^>]+)>)/gi;
   const summary = description.replace(regex, '');
+  const [steps, setSteps] = useState(instructions);
   //const baseUrl = 'https://spoonacular.com/cdn/ingredients_100x100/'
 
   const renderIngredients = ({item}: any) => {
@@ -50,7 +51,10 @@ const RecipeDetails = ({navigation, route}: HomeRecipeProps) => {
       </View>
     );
   };
-  console.log(instructions);
+
+  const jj = ({item}: any) => {
+    return console.log(item);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -146,14 +150,24 @@ const RecipeDetails = ({navigation, route}: HomeRecipeProps) => {
         <Text style={styles.descriptionTitle}>Description:</Text>
         <View style={styles.descriptionBody}>
           {/* <Text style={styles.description}>{description}</Text> */}
-          {/* <MoreInfo text={summary} linesToTruncate={20} /> */}
-          <HTML
+          <MoreInfo text={summary} linesToTruncate={20} />
+          {/* <HTML
             source={{html: description}}
             contentWidth={wp(100)}
             baseFontStyle={styles.description}
             containerStyle={{marginLeft: wp(1.5)}}
-          />
+          /> */}
         </View>
+        <Text style={styles.preparationTitle}>Preparation:</Text>
+        {instructions.map(items => {
+          return (
+            <View>
+              {items.steps.map(item => {
+                return <RecipeInstruction steps={item} key={item.number} />;
+              })}
+            </View>
+          );
+        })}
       </ScrollView>
     </SafeAreaView>
   );

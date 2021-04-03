@@ -39,7 +39,7 @@ const Home = ({navigation}: HomeRecipeProps) => {
             image: item.image,
             description: item.summary,
             ingredients: item.extendedIngredients,
-            instructions: item.analyzedInstructions,
+            instructions: item.detailedInstructions,
           })
         }
       />
