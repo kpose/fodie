@@ -13,9 +13,10 @@ const App = () => {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <View style={styles.container}>
+        <AuthStack />
+        {/* <View style={styles.container}>
           <AuthStack />
-        </View>
+        </View> */}
       </NavigationContainer>
     </Provider>
   );

@@ -8,7 +8,7 @@ import {RecipeCard, Spinner} from '../../Components';
 
 /* redux */
 import {useDispatch, useSelector} from 'react-redux';
-import listAllRecipes from '../../Redux/Actions/RecipeActions';
+import {listAllRecipes} from '../../Redux/Actions/RecipeActions';
 import {getRecipes} from '../../Redux/selectors';
 
 const Home = ({navigation}: HomeRecipeProps) => {
@@ -33,13 +33,14 @@ const Home = ({navigation}: HomeRecipeProps) => {
         vegan={item.vegan}
         onPress={() =>
           navigation.navigate('RecipeDetails', {
+            id: item.id,
             title: item.title,
             dishType: item.dishTypes,
             healthScore: item.healthScore,
             image: item.image,
             description: item.summary,
             ingredients: item.extendedIngredients,
-            instructions: item.detailedInstructions,
+            instructions: item.analyzedInstructions,
           })
         }
       />

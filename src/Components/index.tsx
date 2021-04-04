@@ -5,6 +5,7 @@ import CustomInput from './CustomInput/CustomInput';
 import RecipeCard from './RecipeCard/RecipeCard';
 import RecipeInstruction from './RecipeInstruction/RecipeInstruction';
 import Spinner from './Spinner/Spinner';
+import RecipeDetailsHeader from './RecipeDetailsHeader/RecipeDetailsHeader';
 
 import MoreInfo from './MoreInfo/MoreInfo';
 
@@ -17,4 +18,5 @@ export {
   Spinner,
   MoreInfo,
   RecipeInstruction,
+  RecipeDetailsHeader,
 };

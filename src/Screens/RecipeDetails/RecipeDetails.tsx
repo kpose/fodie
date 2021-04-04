@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -6,6 +6,7 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
+  Animated,
   FlatList,
 } from 'react-native';
 import styles from './styles';
@@ -13,7 +14,15 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import HTML from 'react-native-render-html';
 import {HomeRecipeProps} from '../../Navigation/NavigationTypes';
-import {MoreInfo, RecipeInstruction} from '../../Components';
+import {
+  MoreInfo,
+  RecipeInstruction,
+  RecipeDetailsHeader,
+} from '../../Components';
+
+import {useDispatch, useSelector} from 'react-redux';
+import {similarRecipes} from '../../Redux/Actions/RecipeActions';
+import {getsimilarRecipes} from '../../Redux/selectors';
 
 /* utils */
 import {COLORS, Fonts} from '../../Utils';
@@ -25,6 +34,7 @@ import {
 
 const RecipeDetails = ({navigation, route}: HomeRecipeProps) => {
   const {
+    id,
     title,
     dishType,
     healthScore,
@@ -35,8 +45,11 @@ const RecipeDetails = ({navigation, route}: HomeRecipeProps) => {
   } = route.params;
   const regex = /(<([^>]+)>)/gi;
   const summary = description.replace(regex, '');
-  const [steps, setSteps] = useState(instructions);
-  //const baseUrl = 'https://spoonacular.com/cdn/ingredients_100x100/'
+
+  const dispatch = useDispatch();
+
+  const similarRecipes = useSelector(getsimilarRecipes);
+  console.log(similarRecipes);
 
   const renderIngredients = ({item}: any) => {
     return (
@@ -58,47 +71,11 @@ const RecipeDetails = ({navigation, route}: HomeRecipeProps) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={styles.header}>
-          <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-            <Icon
-              name="chevron-left"
-              size={Fonts.ICONS}
-              color={COLORS.SECONDARY}
-              style={{marginLeft: wp(4)}}
-            />
-          </TouchableOpacity>
-
-          <View style={styles.headerRight}>
-            <TouchableOpacity>
-              <Ionicons
-                name="share-outline"
-                size={Fonts.ICONS}
-                color={COLORS.SECONDARY}
-                style={{marginRight: wp(7)}}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Icon
-                name="bookmark-o"
-                size={Fonts.ICONS}
-                color={COLORS.SECONDARY}
-                style={{marginRight: wp(7)}}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Icon
-                name="heart-o"
-                size={Fonts.ICONS}
-                color={COLORS.SECONDARY}
-                style={{marginRight: wp(6)}}
-              />
-            </TouchableOpacity>
-          </View>
-        </View>
-
+      <RecipeDetailsHeader navigation={navigation} title={title} />
+      <Animated.ScrollView
+        contentContainerStyle={styles.scrollView}
+        showsVerticalScrollIndicator={false}>
         <View style={styles.recipeHeader}>
-          <Text style={styles.title}>{title}</Text>
           <View style={styles.dishTypeContainer}>
             <Text style={styles.dishType}>Dish Type: </Text>
             <Text style={styles.dishTypes}>
@@ -168,7 +145,7 @@ const RecipeDetails = ({navigation, route}: HomeRecipeProps) => {
             </View>
           );
         })}
-      </ScrollView>
+      </Animated.ScrollView>
     </SafeAreaView>
   );
 };

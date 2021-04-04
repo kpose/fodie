@@ -4,6 +4,7 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from '../../Utils/Helper/responsive';
+import {HEADER_MAX_HEIGHT} from '../../Utils/Constants';
 
 const styles = StyleSheet.create({
   container: {
@@ -18,9 +19,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     //marginRight: wp(4),
   },
+  scrollView: {
+    //backgroundColor: 'blue',
+    //marginTop: HEADER_MAX_HEIGHT,
+  },
   recipeHeader: {
     marginLeft: wp(4),
-    marginTop: hp(3),
+    //marginTop: hp(3),
   },
   title: {
     color: COLORS.WHITE,

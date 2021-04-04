@@ -5,6 +5,7 @@ import {StackNavigationProp} from '@react-navigation/stack';
 export type HomeRecipeStackParams = {
   Home: undefined;
   RecipeDetails: {
+    id: number;
     title: string;
     dishType: string[];
     healthScore: number;
